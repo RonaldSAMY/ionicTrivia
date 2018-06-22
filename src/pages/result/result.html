@@ -1,0 +1,60 @@
+<!--
+  Generated template for the ResultPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>result
+        <span style="float:right;color:cadetblue" (click)="redirectScoreboard()">
+            ScoreBoard
+        </span>
+    </ion-title>
+    
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card style="margin-bottom:20px">
+      <ion-card-header>
+          <h3>Trivia Result</h3>
+      </ion-card-header>
+      <ion-card-content>
+        <div> <b>Player : </b>{{QS.userS.userName}}</div>
+        <div> <b>Score : </b> {{QS.totalPoints}}</div>
+        <div> <b>Time : </b>{{QS.timer.min}}:{{QS.timer.sec}}</div>
+        <div>
+          <b>Avatar : </b>
+          <ion-avatar class="ionAvat" style="width:inherit">
+              <img [src]=QS.userS.userAvatar style="display:inline-block;height:40px;width:40px;">
+          </ion-avatar>
+        </div>
+      </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <div *ngFor="let r of QModel">
+      <h6 style="margin-bottom:10px;margin-top:10px"><em>{{r.question}}</em></h6>
+      <ion-item  
+        [ngClass]="{'green':r.user_answer == r.correct_answer,'red':r.user_answer != r.correct_answer}"
+        >
+        <span 
+        style="display: inline-block;width:70%"
+        >{{r.user_answer}}</span>  
+        <span *ngIf="r.user_answer != r.correct_answer" 
+        style="float: right"
+        (click)="showCorrectAnswer(r.correct_answer)"
+        >Show</span>
+      </ion-item>
+    </div>
+  </ion-list>
+
+  <!--<ion-tabs>
+      <ion-tab [root]="rootPage" tabTitle="ScoreBoard"></ion-tab>
+  </ion-tabs>-->
+
+</ion-content>

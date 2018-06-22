@@ -3,4 +3,5 @@ export class QuestionsModel{
     all_answers:Array<string>=[];
     incorrect_answers:Array<string>=[];
     correct_answer:string=""
+    user_answer:string="";
 }

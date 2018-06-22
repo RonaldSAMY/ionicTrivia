@@ -1,28 +1,51 @@
 import { Injectable } from "@angular/core";
 import { Storage } from "@ionic/storage";
+import { Http } from '@angular/http';
 
 @Injectable()
 export class userService{
     userConnected:boolean = false;
     userName:string = "";
+    difficultyChoosed:string = "";
+    userAvatar = "";
 
-    constructor(private store:Storage){
-        this.getUserFromStorage()
+    constructor(private store:Storage,public http:Http){
+        this.getUserFromStorage()  
+        //this.changeUserAvatar()
     }
 
     getUserFromStorage(){
         this.store.get('myUser').then(
             (user)=>{
-                this.userConnected = true
-                this.userName = user
+                if(user !== null){
+                    this.userName = user
+                    if(this.difficultyChoosed != ""){
+                        this.userConnected = true
+                    }
+                    console.log(this.userName)
+                    this.userAvatar = "https://api.adorable.io/avatars/142/"+this.userName+"@adorable.png"  
+                }
             }
         ).catch(()=>console.log('I am trying to get'))
     }
 
-    setUser(user:string){
-        this.store.set("myUser",user).then(
+    changeUserAvatar(val){
+        console.log(this.userName)
+        this.userAvatar = "https://api.adorable.io/avatars/142/"+this.userName+"@adorable.png";
+        /*this.http.get("https://api.adorable.io/avatars/142/"+this.userName+"@adorable")
+        .toPromise().then(
+            (res)=>{
+               console.log(res) 
+            }
+        )*/
+    }
+
+    setUser(){
+        console.log(this.userName)
+        this.store.set("myUser",this.userName).then(
             ()=>{
                 console.log('adde success')
+                this.getUserFromStorage()
             }
         )
     }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { userService } from '../../service/user-service';
 /**
  * Generated class for the TestPage page.
  *
@@ -17,10 +17,11 @@ export class TestPage {
 
   usernameField = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userS:userService) {
   }
 
   ionViewDidLoad() {
   }
+
 
 }

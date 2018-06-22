@@ -1,8 +1,19 @@
 <ion-header>
     <ion-navbar>
-        {{Heading}}
+        <ion-avatar class="ionAvat">
+                <img [src]=userS.userAvatar width="60" style="display:inline-block">
+        </ion-avatar>
+        <h2 class="heading">
+            {{Heading}}
+        </h2>
+        <div style="clear: both;"></div>
     </ion-navbar>
 </ion-header>
-<ion-content>
-    <page-questions></page-questions>
+<ion-content >
+    <div *ngIf="userS.userConnected;else page">
+        <page-questions style="width:100%"></page-questions>
+    </div>
+    <ng-template #page>
+        <page-test style="width:100%"></page-test>
+    </ng-template>
 </ion-content>

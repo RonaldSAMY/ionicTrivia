@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
+import { ResultPageModule } from '../pages/result/result.module';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -18,20 +19,23 @@ import { QuestionService } from '../service/question-service';
     MyApp,
     HomePage,
     TestPage,
-    QuestionsPage
+    QuestionsPage,
+    //ResultPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     HttpModule,
+    ResultPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     TestPage,
-    QuestionsPage
+    QuestionsPage,
+    //ResultPage
   ],
   providers: [
     StatusBar,

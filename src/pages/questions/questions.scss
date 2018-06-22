@@ -3,8 +3,7 @@ page-questions {
 }
 
 .questionBody{
-    margin: 35px auto;
-    width: 80%;
+    margin: 100px auto;
 }
 
 .questions{
@@ -24,9 +23,13 @@ button.activate{
     border: 1px solid #caca;
     border-radius: 5px;
     margin: 10px;
+    width:200px;
 }
 
-
+.item-md-4{
+    width: 30%;
+    display: inline-block;
+}
 
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */

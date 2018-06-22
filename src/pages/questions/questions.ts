@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
+import { IonicPage, NavController,LoadingController } from 'ionic-angular';
 import {  QuestionService } from '../../service/question-service';
+//import { ResultPage } from '../result/result';
 /**
  * Generated class for the QuestionsPage page.
  *
@@ -14,9 +15,9 @@ import {  QuestionService } from '../../service/question-service';
   templateUrl: 'questions.html',
 })
 export class QuestionsPage {
-  
+  private  User_ans = "";
   //public navCtrl: NavController, public navParams: NavParams,
-  constructor(public question: QuestionService,public loder:LoadingController) {
+  constructor(public question: QuestionService,public loder:LoadingController,public navCtrl: NavController) {
   }
 
   ionViewDidLoad() {
@@ -25,9 +26,29 @@ export class QuestionsPage {
 
   selectedItemindex(i:number){
     this.question.selectedAnswerIndex = i
-    let User_ans = this.question.currentQuestion.all_answers[i]
+    this.User_ans = this.question.currentQuestion.all_answers[i]
+    this.question.currentQuestion.user_answer = this.User_ans
     this.question.answerSelected = true;
-    console.log(User_ans)
+  }
+
+  navPu(){
+    if(this.User_ans == this.question.currentQuestion.correct_answer){
+        this.question.totalPoints += this.question.operationPoint
+        console.log(this.question.operationPoint)
+    } else {
+        this.question.totalPoints -= this.question.operationPoint
+        console.log(this.question.currentQuestion.correct_answer)
+        console.log('I am decress')
+    }
+    if(this.question.currentIndex == 20){
+      clearInterval(this.question.timerloop)
+      
+      return this.navCtrl.push("ResultPage",{
+        questionService:this.question
+      })
+    }
+    console.log(this.question.currentIndex);
+    this.question.setCurQuestion(this.question.currentIndex)
   }
 
 
