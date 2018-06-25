@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController,LoadingController } from 'ionic-angular';
 import {  QuestionService } from '../../service/question-service';
+import { ScoreService } from '../../service/score-service';
 //import { ResultPage } from '../result/result';
 /**
  * Generated class for the QuestionsPage page.
@@ -17,7 +18,11 @@ import {  QuestionService } from '../../service/question-service';
 export class QuestionsPage {
   private  User_ans = "";
   //public navCtrl: NavController, public navParams: NavParams,
-  constructor(public question: QuestionService,public loder:LoadingController,public navCtrl: NavController) {
+  constructor(
+    public question: QuestionService,public loder:LoadingController,
+    public navCtrl: NavController,
+    public scoreS:ScoreService
+  ) {
   }
 
   ionViewDidLoad() {
@@ -42,13 +47,19 @@ export class QuestionsPage {
     }
     if(this.question.currentIndex == 20){
       clearInterval(this.question.timerloop)
-      
+      this.scoreS.score.score = this.question.totalPoints
+      this.scoreS.score.time = this.converMinToSec()
+      this.scoreS.addScore()
       return this.navCtrl.push("ResultPage",{
         questionService:this.question
       })
     }
     console.log(this.question.currentIndex);
     this.question.setCurQuestion(this.question.currentIndex)
+  }
+
+  converMinToSec(){
+    return parseInt(this.question.timer.min)*60+this.question.timer.sec
   }
 
 

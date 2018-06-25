@@ -6,7 +6,7 @@ import { userService } from './user-service'
 export class QuestionService{
     public Ques:Array<QuestionsModel> = []
     public currentQuestion:QuestionsModel = new QuestionsModel()
-    public currentIndex = 19;// DEBUG
+    public currentIndex = 0;// DEBUG
     public answerSelected = false
     public selectedAnswerIndex = -1
     public QuestionLoded = false

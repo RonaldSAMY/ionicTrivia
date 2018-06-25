@@ -5,6 +5,7 @@ import { Score} from "../model/score";
 export class ScoreService{
     public endPoint = "https://leaderboard.lp1.eu"
     public allScores:Array<Score> = []
+    public score = new Score()
     constructor(public http:Http){ }
 
     getScores(){
@@ -18,6 +19,16 @@ export class ScoreService{
                    this.allScores.push(s)
                 });
                 console.log(ans)
+            }
+        )
+    }
+
+    addScore(){
+        //console.log(this.score)
+        this.http.post(this.endPoint+"/api/score",this.score).toPromise()
+        .then(
+            (res)=>{
+                console.log('added to scoreboard successfully')
             }
         )
     }

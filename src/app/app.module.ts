@@ -13,6 +13,7 @@ import { TestPage } from '../pages/test/test';
 import { QuestionsPage } from '../pages/questions/questions';
 import { userService } from '../service/user-service';
 import { QuestionService } from '../service/question-service';
+import { ScoreService } from '../service/score-service';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { QuestionService } from '../service/question-service';
     StatusBar,
     SplashScreen,
     userService,
+    ScoreService,
     QuestionService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
